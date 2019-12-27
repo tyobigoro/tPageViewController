@@ -21,17 +21,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("### viewDidLoad/children", children)
-        
-        // pageViewControllerの設定
-        //upperPageViewController = children.first as? UIPageViewController
-        //lowerPageViewController = children.first as? UIPageViewController
+        // pageViewControllerの設定 -> prepareへ
         // pageControlの設定
         setUpperPageViewController()
         setLowerPageViewController()
-        
-        
+
         upperPageViewController?.delegate   = self
         upperPageViewController?.dataSource = self
         lowerPageViewController?.delegate   = self
@@ -41,13 +35,9 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedUpperPVC":
-            let vc = segue.destination as! UpperPageViewController
-            self.upperPageViewController = vc
-            print("### EmbedUpperPVC/vc:", vc)
+            upperPageViewController = (segue.destination as! UpperPageViewController)
         case "EmbedLowerPVC":
-            let vc = segue.destination as! LowerPageViewController
-            self.lowerPageViewController = vc
-            print("### EmbedLowerPVC/vc:", vc)
+            lowerPageViewController = (segue.destination as! LowerPageViewController)
         default: fatalError("prepare")
         }
     }
@@ -65,7 +55,7 @@ extension ViewController: UIPageViewControllerDelegate {
     {
          
         if completed {
-            switch pageViewController {
+           switch pageViewController {
             case upperPageViewController:
                 guard let vc = upperPageViewController?.viewControllers?.first as? ContentsVC else { return }
                 let index = vc.dataSource.index
@@ -74,7 +64,7 @@ extension ViewController: UIPageViewControllerDelegate {
                 guard let vc = lowerPageViewController?.viewControllers?.first as? ContentsVC else { return }
                 let index = vc.dataSource.index
                 self.lowerPageViewIndex = index
-            default: fatalError("pageViewController/didFinishAnimating/fatalError")
+                default: fatalError("pageViewController/didFinishAnimating/fatalError")
             }
         }
     }
@@ -94,16 +84,13 @@ extension ViewController: UIPageViewControllerDataSource {
             if index == 0 { return nil }
             index -= 1
             str = upperPageViewArray[index]
-            
         case lowerPageViewController:
-            index = upperPageViewIndex
+            index = lowerPageViewIndex
             if index == 0 { return nil }
             index -= 1
-            str = upperPageViewArray[index]
-            
+            str = lowerPageViewArray[index]
         default: fatalError("viewControllerBefore/fatalError")
         }
-        
         guard let vc = createContentsVC(index: index, str: str) else { return nil }
         
         return vc
@@ -121,16 +108,13 @@ extension ViewController: UIPageViewControllerDataSource {
             if index >= upperPageViewArray.count - 1 { return nil }
             index += 1
             str = upperPageViewArray[index]
-            
         case lowerPageViewController:
-            index = upperPageViewIndex
+            index = lowerPageViewIndex
             if index >= lowerPageViewArray.count - 1 { return nil }
             index += 1
-            str = upperPageViewArray[index]
-            
+            str = lowerPageViewArray[index]
         default: fatalError("viewControllerBefore/fatalError")
         }
-        
         guard let vc = createContentsVC(index: index, str: str) else { return nil }
         
         return vc
@@ -157,8 +141,6 @@ extension ViewController {
         let str   = lowerPageViewArray[index]
         
         guard let vc = createContentsVC(index: index, str: str) else { return }
-        
-        print("setLowerPageVC:",vc)
         
         self.lowerPageViewController?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
     }
