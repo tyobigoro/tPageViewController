@@ -46,18 +46,18 @@
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
         </scene>
-        <!--Upper Page View Controller-->
+        <!--Page View Controller-->
         <scene sceneID="yhg-rI-XbN">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Zk-jx-Ti2" customClass="UpperPageViewController" customModule="tPageViewController" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Zk-jx-Ti2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghx-BF-xaT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="904" y="-12"/>
         </scene>
-        <!--Lower Page View Controller-->
+        <!--Page View Controller-->
         <scene sceneID="Xpt-xv-xvP">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="w2I-q8-H44" customClass="LowerPageViewController" customModule="tPageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="w2I-q8-H44" sceneMemberID="viewController">
                     <size key="freeformSize" width="373" height="327"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISR-Zt-A30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

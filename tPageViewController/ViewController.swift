@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var upperPageViewController: UpperPageViewController!
-    var lowerPageViewController: LowerPageViewController!
+    var upperPageViewController: UIPageViewController!
+    var lowerPageViewController: UIPageViewController!
     
     var upperPageViewArray: [String] = ["A", "B", "C", "D", "E"]
     var lowerPageViewArray: [String] = ["あ", "か", "さ", "た", "な"]
@@ -35,9 +35,9 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedUpperPVC":
-            upperPageViewController = (segue.destination as! UpperPageViewController)
+            upperPageViewController = (segue.destination as! UIPageViewController)
         case "EmbedLowerPVC":
-            lowerPageViewController = (segue.destination as! LowerPageViewController)
+            lowerPageViewController = (segue.destination as! UIPageViewController)
         default: fatalError("prepare")
         }
     }
@@ -181,6 +181,6 @@ class ContentsVCDataStore {
 }
 
 
-class UpperPageViewController: UIPageViewController {}
+//class UpperPageViewController: UIPageViewController {}
 
-class LowerPageViewController: UIPageViewController {}
+//class LowerPageViewController: UIPageViewController {}
