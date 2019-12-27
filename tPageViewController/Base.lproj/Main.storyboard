@@ -18,13 +18,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUb-LE-asI">
                                 <rect key="frame" x="20.5" y="60.5" width="373" height="327"/>
                                 <connections>
-                                    <segue destination="0Zk-jx-Ti2" kind="embed" id="bOu-20-0bG"/>
+                                    <segue destination="0Zk-jx-Ti2" kind="embed" identifier="EmbedUpperPVC" id="bOu-20-0bG"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFd-hY-9nX">
                                 <rect key="frame" x="20.5" y="508.5" width="373" height="327"/>
                                 <connections>
-                                    <segue destination="w2I-q8-H44" kind="embed" id="EVe-Nc-eOm"/>
+                                    <segue destination="w2I-q8-H44" kind="embed" identifier="EmbedLowerPVC" id="EVe-Nc-eOm"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -86,6 +86,7 @@
                             <constraint firstAttribute="bottom" secondItem="PQj-JE-S1A" secondAttribute="bottom" id="owP-2X-gMN"/>
                             <constraint firstItem="PQj-JE-S1A" firstAttribute="leading" secondItem="4XC-l9-oUQ" secondAttribute="leading" id="rTW-ph-c92"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="84F-Dw-a23"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="373" height="372"/>

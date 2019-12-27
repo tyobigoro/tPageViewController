@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var upperPageViewController: UpperPageViewController?
-    var lowerPageViewController: LowerPageViewController?
+    var upperPageViewController: UpperPageViewController!
+    var lowerPageViewController: LowerPageViewController!
     
     var upperPageViewArray: [String] = ["A", "B", "C", "D", "E"]
     var lowerPageViewArray: [String] = ["あ", "か", "さ", "た", "な"]
@@ -22,12 +22,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("### viewDidLoad/children", children)
+        
         // pageViewControllerの設定
-        upperPageViewController = children.first as? UpperPageViewController
-        lowerPageViewController = children.first as? LowerPageViewController
+        //upperPageViewController = children.first as? UIPageViewController
+        //lowerPageViewController = children.first as? UIPageViewController
         // pageControlの設定
-        setLowerPageViewController()
         setUpperPageViewController()
+        setLowerPageViewController()
         
         
         upperPageViewController?.delegate   = self
@@ -35,6 +37,21 @@ class ViewController: UIViewController {
         lowerPageViewController?.delegate   = self
         lowerPageViewController?.dataSource = self
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "EmbedUpperPVC":
+            let vc = segue.destination as! UpperPageViewController
+            self.upperPageViewController = vc
+            print("### EmbedUpperPVC/vc:", vc)
+        case "EmbedLowerPVC":
+            let vc = segue.destination as! LowerPageViewController
+            self.lowerPageViewController = vc
+            print("### EmbedLowerPVC/vc:", vc)
+        default: fatalError("prepare")
+        }
+    }
+    
 }
 
 
@@ -140,6 +157,8 @@ extension ViewController {
         let str   = lowerPageViewArray[index]
         
         guard let vc = createContentsVC(index: index, str: str) else { return }
+        
+        print("setLowerPageVC:",vc)
         
         self.lowerPageViewController?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
     }
